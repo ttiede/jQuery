@@ -48,22 +48,30 @@
 		var texto = treinamento.val();
 		treinamento.val('');
 		$(this).appenToCurso(texto);
-
 	});
 
-	$('#botao-atualiza').click(function() {
-		$.ajax({
-			url : 'http://mirrorfashion.caelum.com.br/treinamentos',
-			dataType: 'jsonp',
-			success: function(retorno) {
-				$.each(retorno.treinamentos, function() {
-					var treinamento = this;
-					$(this).appenToCurso(treinamento.nome);
-				});
-			}
+	// Disable to other way do this 
+	//$('#botao-atualiza2).click(function() {
+	//  $.ajax({
+	//    url : 'http://mirrorfashion.caelum.com.br/treinamentos',
+	//    dataType: 'jsonp',
+	//    success: function(retorno) {
+	//      $.each(retorno.treinamentos, function() {
+	//        var treinamento = this;
+	//        $(this).appenToCurso(treinamento.nome);
+	//      });
+	//    }
+	//  });
+
+	$('#botao-atualiza').click(function()
+	$.get('http://mirrorfashion.caelum.com.br/treinamentos', function(retorno) {
+		$.each(retorno.treinamentos, function() {
+			var treinamento = this;
+			$(this).appenToCurso(treinamento.nome);
 		});
-	});
+	} , 'jsonp');
+});
 
-	</script>
+</script>
 </body>
 </html>
