@@ -76,17 +76,20 @@
 	</div>
 	<script src="js/jquery-3.0.0.js"></script>
 	<script>
-	var items = $(".item-total");
-	var total = 0;
-	var quantidade_de_itens = 0;
+	var aposInicializado = function() {
+		var items = $(".item-total");
+		var total = 0;
+		var quantidade_de_itens = 0;
 
-	$.each(items, function() {
-		var item = this;
-		total = total + parseFloat($(item).text());
-		quantidade_de_itens = quantidade_de_itens + 1;
-	});
-	$("#valor-total").text(total);
-	$("#quantidade-de-itens").text(quantidade_de_itens);
+		$.each(items, function() {
+			var item = this;
+			total = total + parseFloat($(item).text());
+			quantidade_de_itens = quantidade_de_itens + 1;
+		});
+		$("#valor-total").text(total);
+		$("#quantidade-de-itens").text(quantidade_de_itens);
+	};
+	 $(aposInicializado);
 	</script>
 </body>
 </html>
