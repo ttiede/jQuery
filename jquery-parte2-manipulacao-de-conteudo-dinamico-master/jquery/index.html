@@ -76,6 +76,11 @@
 			</tbody>
 		</table>
 	</div>
+
+	<div>
+    <input type="button" value="Undo" id="undo">
+  </div>
+
 	<div>
 		Valor total: R$<span id="valor-total">0</span>
 		<br/>
@@ -83,36 +88,6 @@
 		<span id="quantidade-de-itens"></span>
 	</div>
 	<script src="js/jquery-3.0.0.js"></script>
-	<script>
-	var removeItem = function( object ) {
-		var quantidadeComoString = $("#quantidade-de-itens").text();
-    var atual = parseInt(quantidadeComoString);
-    var novaQuantidade = atual - 1;
-    $("#quantidade-de-itens").text(novaQuantidade);
-
-    var self = $(object);
-    self.closest("tr").remove();
-	};
-
-	var aposInicializado = function() {
-		var items = $(".item-total");
-		var total = 0;
-		var quantidade_de_itens = 0;
-
-		$.each(items, function() {
-			var item = this;
-			total = total + parseFloat($(item).text());
-			quantidade_de_itens = quantidade_de_itens + 1;
-		});
-		$("#valor-total").text(total);
-		$("#quantidade-de-itens").text(quantidade_de_itens);
-	  $("td").on("click", ".remove-item", function(event){
-			event.preventDefault();
-			removeItem($(this));
-		});
-	};
-
-	 $(aposInicializado);
-	</script>
+	<script	src="js/carrinho.js"></script>
 </body>
 </html>
