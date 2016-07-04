@@ -22,16 +22,16 @@ var atualizaDados = function(){
 };
 
 var umaPropaganda = function(){
-    var propagandas = ["O que acha de comprar uma motocicleta?",
-               "O que acha de comprar uma lancha?",
-               "O que acha de comprar uma bicicleta?",
-               "O que acha de comprar uma carro?"
-               ];
-    var posicao = Math.floor(propagandas.length *Math.random());
-    var texto = propagandas[posicao];
-    var tr =$("<tr>").addClass("propaganda").append($("<td>"));
-    tr.find("td").attr("colspan", 6).text(texto);
-    return tr;
+  var propagandas = ["O que acha de comprar uma motocicleta?",
+  "O que acha de comprar uma lancha?",
+  "O que acha de comprar uma bicicleta?",
+  "O que acha de comprar uma carro?"
+];
+var posicao = Math.floor(propagandas.length *Math.random());
+var texto = propagandas[posicao];
+var tr =$("<tr>").addClass("propaganda").append($("<td>"));
+tr.find("td").attr("colspan", 6).text(texto);
+return tr;
 }
 
 var removeItem = function( object ) {
@@ -44,12 +44,12 @@ var removeItem = function( object ) {
 };
 
 var undo = function(){
-    var carrinho = $(this).closest('.carrinho');
-    $("tr:visible").removeClass("recuperado");
-    var trs = $("tr:hidden");
-    trs.addClass("recuperado");
-    trs.show();
-    atualizaDados();
+  var carrinho = $(this).closest('.carrinho');
+  $("tr:visible").removeClass("recuperado");
+  var trs = $("tr:hidden");
+  trs.addClass("recuperado");
+  trs.show();
+  atualizaDados();
 }
 
 var aposInicializado = function() {
@@ -67,8 +67,17 @@ var aposInicializado = function() {
     $("tr:nth-child(3n)").each(function(){
       umaPropaganda().insertAfter($(this));
     });
-});
-
+  });
 };
 
- $(aposInicializado);
+var daDestaque = function(){
+  $(this).addClass("hovering");
+}
+
+var tiraDestaque = function(){
+
+  $(this).removeClass("hovering");
+
+}
+$(aposInicializado);
+$(".carrinho tbody tr").hover(daDestaque, tiraDestaque);
