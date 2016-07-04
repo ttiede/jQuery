@@ -2,11 +2,6 @@ var atualizaDados = function(){
   var carrinhos = $(".carrinho");
   $.each(carrinhos, function() {
     var carrinho = $(this);
-
-    $("tr:nth-child(3n)").each(function(){
-      umaPropaganda().insertAfter($(this));
-    });
-
     var items = carrinho.find(".item-total:visible");
     var total = 0;
     var quantidade_de_itens = 0;
@@ -21,18 +16,18 @@ var atualizaDados = function(){
   });
 };
 
-var umaPropaganda = function(){
-  var propagandas = ["O que acha de comprar uma motocicleta?",
-  "O que acha de comprar uma lancha?",
-  "O que acha de comprar uma bicicleta?",
-  "O que acha de comprar uma carro?"
-];
-var posicao = Math.floor(propagandas.length *Math.random());
-var texto = propagandas[posicao];
-var tr =$("<tr>").addClass("propaganda").append($("<td>"));
-tr.find("td").attr("colspan", 6).text(texto);
-return tr;
-}
+var umaPropaganda = function() {
+	var propagandas = ["O que acha de comprar uma motocicleta?",
+						"O que acha de comprar uma lancha?",
+						"O que acha de comprar uma bicicleta?",
+						"O que acha de comprar um carro?"
+						];
+	var posicao = Math.floor(propagandas.length * Math.random());
+	var texto = propagandas[posicao];
+	var tr = $("<tr>").addClass("propaganda").append($("<td>"));
+	tr.find("td").attr("colspan", 6).text(texto);
+	return tr;
+};
 
 var removeItem = function( object ) {
   //var itemTotal = self.closest("td").siblings(".item-total");
@@ -62,12 +57,14 @@ var aposInicializado = function() {
     event.preventDefault();
     undo();
   });
-  $.each(carrinhos, function() {
-    var carrinho = $(this);
-    $("tr:nth-child(3n)").each(function(){
-      umaPropaganda().insertAfter($(this));
-    });
-  });
+
+  $(".carrinho").each(function() {
+		$(this).find("tr:nth-child(3n)").each(function() {
+			umaPropaganda().insertAfter($(this));
+		});
+	});
+	$(".carrinho tbody tr").hover(daDestaque, tiraDestaque);
+
 };
 
 var daDestaque = function(){
@@ -80,4 +77,3 @@ var tiraDestaque = function(){
 
 }
 $(aposInicializado);
-$(".carrinho tbody tr").hover(daDestaque, tiraDestaque);
