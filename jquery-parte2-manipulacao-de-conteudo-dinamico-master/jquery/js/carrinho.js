@@ -64,7 +64,7 @@ var aposInicializado = function() {
 		});
 	});
 	$(".carrinho tbody tr").hover(daDestaque, tiraDestaque);
-
+  $(".alterna-propaganda").click(alternaPropaganda);
 };
 
 var daDestaque = function(){
@@ -72,8 +72,13 @@ var daDestaque = function(){
 }
 
 var tiraDestaque = function(){
-
   $(this).removeClass("hovering");
-
 }
+
+var alternaPropaganda = function(event){
+    event.preventDefault();
+    $(".propaganda").fadeToggle();
+    $(".alterna-propaganda").toggle();
+}
+
 $(aposInicializado);
